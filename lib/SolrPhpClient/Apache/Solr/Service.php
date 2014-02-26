@@ -853,10 +853,9 @@ class Apache_Solr_Service
 	public function commit($expungeDeletes = false, $waitFlush = true, $waitSearcher = true, $timeout = 3600)
 	{
 		$expungeValue = $expungeDeletes ? 'true' : 'false';
-		$flushValue = $waitFlush ? 'true' : 'false';
 		$searcherValue = $waitSearcher ? 'true' : 'false';
 
-		$rawPost = '<commit expungeDeletes="' . $expungeValue . '" waitFlush="' . $flushValue . '" waitSearcher="' . $searcherValue . '" />';
+		$rawPost = '<commit expungeDeletes="' . $expungeValue . '" waitSearcher="' . $searcherValue . '" />';
 
 		return $this->_sendRawPost($this->_updateUrl, $rawPost, $timeout);
 	}
@@ -1148,10 +1147,9 @@ class Apache_Solr_Service
 	 */
 	public function optimize($waitFlush = true, $waitSearcher = true, $timeout = 3600)
 	{
-		$flushValue = $waitFlush ? 'true' : 'false';
 		$searcherValue = $waitSearcher ? 'true' : 'false';
 
-		$rawPost = '<optimize waitFlush="' . $flushValue . '" waitSearcher="' . $searcherValue . '" />';
+		$rawPost = '<optimize waitSearcher="' . $searcherValue . '" />';
 
 		return $this->_sendRawPost($this->_updateUrl, $rawPost, $timeout);
 	}
